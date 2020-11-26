@@ -14,5 +14,8 @@ RUN cd / ;\
     wget https://nodejs.org/dist/v14.15.1/node-v14.15.1-linux-x64.tar.xz ;\
     tar -xf node-v14.15.1-linux-x64.tar.xz
 
+COPY [ ".bashrc" , ".vimrc"           , "/root/"      ]
+COPY [ "startup.sh"                   , "/"           ]
+
 EXPOSE 8080 8888
 CMD [ "/bin/bash" ]

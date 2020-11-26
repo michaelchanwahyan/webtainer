@@ -9,4 +9,4 @@ docker run -p 8888:8888 \
            --name=sleepy_jirachi \
            --memory=4g \
            webtainer:latest \
-           /bin/bash
+           /bin/bash startup.sh
