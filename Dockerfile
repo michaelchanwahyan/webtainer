@@ -26,10 +26,20 @@ RUN apt-get -y update ;\
                python3 python3-pip python3-dev python3-venv
 
 RUN cd / ;\
-    git clone https://github.com/ImageMagick/ImageMagick ;\
+    wget https://github.com/ImageMagick/ImageMagick/archive/7.0.10-51.tar.gz ;\
+    tar -zxvf 7.0.10-51.tar.gz ;\
+    mv ImageMagick-* ImageMagick ;\
     cd ImageMagick ;\
-    git checkout tags/7.0.10-51 ;\
     /usr/bin/sh configure ;\
+    make -j12 ;\
+    make install
+
+RUN cd / ;\
+    wget https://github.com/FFmpeg/FFmpeg/archive/n4.3.1.tar.gz ;\
+    tar -zxvf n4.3.1.tar.gz ;\
+    mv FFmpeg-* FFmpeg ;\
+    cd FFmpeg ;\
+    /usr/bin/sh configure --disable-x86asm ;\
     make -j12 ;\
     make install
 
