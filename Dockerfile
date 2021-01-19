@@ -2,7 +2,8 @@ FROM ubuntu:20.04
 LABEL maintainer "michaelchan_wahyan@yahoo.com.hk"
 
 ENV SHELL=/bin/bash \
-    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/node-v14.15.1-linux-x64/bin
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/lib:/usr/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu:/node-v14.15.1-linux-x64/bin \
+    LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:/usr/lib/x86_64-linux-gnu
 
 RUN apt-get -y update ;\
     apt-get -y upgrade
@@ -22,7 +23,7 @@ RUN cd / ;\
 
 RUN apt-get -y update ;\
     apt-get -y upgrade ;\
-    apt-get -y install build-essential libssl-dev libffi-dev \
+    apt-get -y install build-essential libssl-dev libffi-dev libx264-dev \
                python3 python3-pip python3-dev python3-venv
 
 RUN cd / ;\
@@ -42,6 +43,8 @@ RUN cd / ;\
     /usr/bin/sh configure --disable-x86asm ;\
     make -j12 ;\
     make install
+
+RUN ldconfig $LD_LIBRARY_PATH
 
 COPY [ ".bashrc" , ".vimrc"           , "/root/"      ]
 COPY [ "startup.sh"                   , "/"           ]

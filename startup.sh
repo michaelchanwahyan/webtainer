@@ -1,5 +1,5 @@
 #!/bin/bash
-pushd /webapp/node-ex-website
+pushd /webapp/aip-web
 echo remove node_modules ...
 rm -rf node_modules
 echo remove package-lock.json ...
