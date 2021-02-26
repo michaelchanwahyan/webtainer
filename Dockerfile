@@ -49,5 +49,5 @@ RUN ldconfig $LD_LIBRARY_PATH
 COPY [ ".bashrc" , ".vimrc"           , "/root/"      ]
 COPY [ "startup.sh"                   , "/"           ]
 
-EXPOSE 8080 8888
+EXPOSE 8080 8181 8888
 CMD [ "/bin/bash" ]
